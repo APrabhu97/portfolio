@@ -1,17 +1,36 @@
 import React, { useEffect, useState } from "react";
-import anime from 'animejs';
+import anime from "animejs";
 import "./loader.css";
 
 const Loader = () => {
-  
+  const [progress, setProgress] = useState(0);
+  const battery = {
+    progress: 0,
+  };
   const animate = () => {
+    const icon = anime({
+      targets: ".batterySegment",
+      width: 33,
+      duration: 300,
+      easing: "linear",
+      loop: true,
+      delay: anime.stagger(500),
+      endDelay: 500,
+    });
+
     anime({
-      targets: '.rope',
-      rotate: [60, -60],
+      targets: battery,
+      progress: 100,
       duration: 3000,
-      easing: 'easeInOutSine',
-      direction: 'alternate',
-      loop: true
+      round: 1,
+      easing: "linear",
+      update: () => {
+        setProgress(battery.progress);
+      },
+      complete: () => {
+        icon.pause();
+        icon.seek(icon.duration);
+      },
     });
   };
 
@@ -19,13 +38,15 @@ const Loader = () => {
     animate();
   }, []);
 
-
   return (
     <div className="loader">
-      <div className="rope">
-        <div className="pivot"></div>
-        <div className="ball"></div>
+      <div className="cellOuter">
+        <div className="batterySegment"></div>
+        <div className="batterySegment"></div>
+        <div className="batterySegment"></div>
       </div>
+      <div className="cellPoint"></div>
+      <div className="percentage">{progress}%</div>
     </div>
   );
 };
