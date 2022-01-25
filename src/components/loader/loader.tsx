@@ -3,34 +3,27 @@ import anime from "animejs";
 import "./loader.css";
 
 const Loader = () => {
-  const [progress, setProgress] = useState(0);
-  const battery = {
-    progress: 0,
-  };
+  const [showBorder, setShowBorder] = useState(true);
   const animate = () => {
-    const icon = anime({
-      targets: ".batterySegment",
-      width: 33,
-      duration: 300,
-      easing: "linear",
-      loop: true,
-      delay: anime.stagger(500),
-      endDelay: 500,
-    });
-
     anime({
-      targets: battery,
-      progress: 100,
-      duration: 3000,
-      round: 1,
+      targets: ".box-inner",
+      begin: () => setShowBorder(false),
+      complete: () => setShowBorder(true),
       easing: "linear",
-      update: () => {
-        setProgress(battery.progress);
-      },
-      complete: () => {
-        icon.pause();
-        icon.seek(icon.duration);
-      },
+      translateY: [
+        { value: 100, duration: 500 },
+        { value: 0, duration: 500, delay: 1500 },
+        { value: -103, duration: 500, delay: 500 },
+        { value: 0, duration: 500, delay: 2500 },
+        { value: 100, duration: 500, delay: 500 },
+        { value: 0, duration: 500, delay: 1500 },
+      ],
+      translateX: [
+        { value: 103, duration: 500, delay: 1000 },
+        { value: 0, duration: 500, delay: 2500 },
+        { value: -103, duration: 500, delay: 500 },
+        { value: 0, duration: 500, delay: 2500 },
+      ],
     });
   };
 
@@ -40,13 +33,10 @@ const Loader = () => {
 
   return (
     <div className="loader">
-      <div className="cellOuter">
-        <div className="batterySegment"></div>
-        <div className="batterySegment"></div>
-        <div className="batterySegment"></div>
-      </div>
-      <div className="cellPoint"></div>
-      <div className="percentage">{progress}%</div>
+      <div
+        className={showBorder ? "box-outer" : "box-outer no-bottom-border"}
+      ></div>
+      <div className="box-inner"></div>
     </div>
   );
 };
