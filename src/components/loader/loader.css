@@ -1,23 +1,8 @@
-.box-outer{
-    border: 3px solid darkorange;
-    background-color: palegreen;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 150px;
-    left: 150px;
+.letter{
+    display: inline-block;
+    opacity: 0;
 }
 
-.box-inner{
-    background-color: darkgreen;
-    z-index: 10;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 153px;
-    left: 153px;
-}
-
-.no-bottom-border{
-    border-bottom: none !important;
+div{
+    display: inline-block;
 }

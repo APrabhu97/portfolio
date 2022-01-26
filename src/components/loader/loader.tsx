@@ -3,28 +3,20 @@ import anime from "animejs";
 import "./loader.css";
 
 const Loader = () => {
-  const [showBorder, setShowBorder] = useState(true);
   const animate = () => {
     anime({
-      targets: ".box-inner",
-      begin: () => setShowBorder(false),
-      complete: () => setShowBorder(true),
-      easing: "linear",
-      translateY: [
-        { value: 100, duration: 500 },
-        { value: 0, duration: 500, delay: 1500 },
-        { value: -103, duration: 500, delay: 500 },
-        { value: 0, duration: 500, delay: 2500 },
-        { value: 100, duration: 500, delay: 500 },
-        { value: 0, duration: 500, delay: 1500 },
-      ],
-      translateX: [
-        { value: 103, duration: 500, delay: 1000 },
-        { value: 0, duration: 500, delay: 2500 },
-        { value: -103, duration: 500, delay: 500 },
-        { value: 0, duration: 500, delay: 2500 },
-      ],
-    });
+      targets: ".letter",
+      opacity: 1,
+      translateY: 50,
+      delay: anime.stagger(100, { start: 1000 }),
+      scale: anime.stagger([0.7, 1], { from: 'center' }),
+      rotate:{
+        value: 360,
+        duration: 2000,
+        easing: 'easeInExpo'
+      },
+      translateX: [-10, 30],
+    })
   };
 
   useEffect(() => {
@@ -32,12 +24,20 @@ const Loader = () => {
   }, []);
 
   return (
-    <div className="loader">
-      <div
-        className={showBorder ? "box-outer" : "box-outer no-bottom-border"}
-      ></div>
-      <div className="box-inner"></div>
-    </div>
+    <h1>
+      <span className="letter">H</span>
+      <span className="letter">E</span>
+      <span className="letter">L</span>
+      <span className="letter">L</span>
+      <span className="letter">O</span>
+      &nbsp;
+      <span className="letter">W</span>
+      <span className="letter">O</span>
+      <span className="letter">R</span>
+      <span className="letter">L</span>
+      <span className="letter">D</span>
+      <span className="letter">!</span>
+    </h1>
   );
 };
 
