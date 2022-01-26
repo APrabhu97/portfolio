@@ -4,19 +4,7 @@ import "./loader.css";
 
 const Loader = () => {
   const animate = () => {
-    anime({
-      targets: ".letter",
-      opacity: 1,
-      translateY: 50,
-      delay: anime.stagger(100, { start: 1000 }),
-      scale: anime.stagger([0.7, 1], { from: 'center' }),
-      rotate:{
-        value: 360,
-        duration: 2000,
-        easing: 'easeInExpo'
-      },
-      translateX: [-10, 30],
-    })
+    
   };
 
   useEffect(() => {
