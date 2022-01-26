@@ -4,7 +4,25 @@ import "./loader.css";
 
 const Loader = () => {
   const animate = () => {
-    
+    const animation = anime.timeline({
+      duration: 1500,
+      easing: "easeInOutSine",
+      loop: true,
+      direction: "alternate",
+    });
+    animation.add({
+      targets: ".one",
+      translateY: -100,
+      backgroundColor: 'rgb(255, 0, 0)',
+    }).add({
+      targets: ".two",
+      translateY: -100,
+      backgroundColor: 'rgb(0, 255, 0)',
+    }).add({
+      targets: ".three",
+      translateY: -100,
+      backgroundColor: 'rgb(0, 0, 255)',
+    });
   };
 
   useEffect(() => {
@@ -12,20 +30,11 @@ const Loader = () => {
   }, []);
 
   return (
-    <h1>
-      <span className="letter">H</span>
-      <span className="letter">E</span>
-      <span className="letter">L</span>
-      <span className="letter">L</span>
-      <span className="letter">O</span>
-      &nbsp;
-      <span className="letter">W</span>
-      <span className="letter">O</span>
-      <span className="letter">R</span>
-      <span className="letter">L</span>
-      <span className="letter">D</span>
-      <span className="letter">!</span>
-    </h1>
+    <div>
+      <div className="ball one"></div>
+      <div className="ball two"></div>
+      <div className="ball three"></div>
+    </div>
   );
 };
 
